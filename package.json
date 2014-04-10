@@ -9,7 +9,7 @@
   "dependencies": {
     "hapi": "^4.0.0",
     "handlebars": "^2.0.0-alpha.2",
-    "meo-wallet": "0.0.2"
+    "meo-wallet": "0.0.x"
   },
   "engines": {
     "node": "0.10.x",
