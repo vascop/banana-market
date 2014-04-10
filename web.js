@@ -1,12 +1,26 @@
-var express = require('express');
-var app = express();
-app.use(express.logger());
+var request = require('request');
+var Hapi = require('hapi');
 
-app.get('/', function(request, response) {
-  response.send('Hello World!');
+var confirm = function (request, reply) {
+    console.log(reply);
+};
+
+var cancel = function (request, reply) {
+    console.log(reply);
+};
+
+
+var server = new Hapi.Server('localhost', 8000, { cors: true });
+
+server.route([
+    { method: 'GET', path: '/confirm', handler: confirm },
+    { method: 'GET', path: '/cancel', handler: cancel }
+]);
+
+server.start(function () {
+    console.log('Server started at: ' + server.info.uri);
 });
 
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
+
+
+
