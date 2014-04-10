@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "hapi": "^4.0.0"
+    "hapi": "^4.0.0",
+    "handlebars": "^2.0.0-alpha.2"
   },
   "engines": {
     "node": "0.10.x",

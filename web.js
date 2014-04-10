@@ -2,15 +2,15 @@ var Hapi = require('hapi');
 
 var options = {
     views: {
-        path: __dirname + 'templates',
+        path: __dirname + '/templates',
         engines: {
             html: 'handlebars'
         },
-        partialsPath: __dirname + 'partials'
+        partialsPath: __dirname + '/partials'
     }
 }; 
 
-var server = new Hapi.Server('localhost', 8000, { cors: true });
+var server = new Hapi.Server('localhost', 8000, options);
 
 server.route([
     { method: 'GET', path: '/', handler: index },
@@ -28,9 +28,7 @@ function cancel(request, reply) {
 };
 
 function index(request, reply) {
-    reply.view('index.html', {
-        
-    });
+    reply.view('index.html', {});
 }
 
 
