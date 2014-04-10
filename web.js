@@ -1,4 +1,3 @@
-var request = require('request');
 var Hapi = require('hapi');
 
 var confirm = function (request, reply) {
