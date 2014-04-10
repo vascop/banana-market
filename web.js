@@ -1,26 +1,12 @@
 var Hapi = require('hapi');
 
-var confirm = function (request, reply) {
-    console.log(request);
-};
-
-var cancel = function (request, reply) {
-    console.log(request);
-};
-
-var index = function (request, reply) {
-    reply.view('index.html', {
-        
-    });
-}
-
 var options = {
     views: {
-        path: 'templates',
+        path: __dirname + 'templates',
         engines: {
             html: 'handlebars'
         },
-        partialsPath: 'partials'
+        partialsPath: __dirname + 'partials'
     }
 }; 
 
@@ -31,6 +17,22 @@ server.route([
     { method: 'GET', path: '/confirm', handler: confirm },
     { method: 'GET', path: '/cancel', handler: cancel }
 ]);
+
+
+function confirm(request, reply) {
+    console.log(request);
+};
+
+function cancel(request, reply) {
+    console.log(request);
+};
+
+function index(request, reply) {
+    reply.view('index.html', {
+        
+    });
+}
+
 
 server.start(function () {
     console.log('Server started at: ' + server.info.uri);
