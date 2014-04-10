@@ -1,4 +1,5 @@
 var Hapi = require('hapi');
+var wallet = require('meo-wallet');
 
 var options = {
     views: {
@@ -14,22 +15,42 @@ var server = new Hapi.Server('localhost', 8000, options);
 
 server.route([
     { method: 'GET', path: '/', handler: index },
+    { method: 'GET', path: '/go', handler: go },
     { method: 'GET', path: '/confirm', handler: confirm },
     { method: 'GET', path: '/cancel', handler: cancel }
 ]);
 
 
 function confirm(request, reply) {
-    console.log(request);
+    reply.view('confirm.html', {});
 };
 
 function cancel(request, reply) {
-    console.log(request);
+    reply.view('cancel.html', {});
 };
 
 function index(request, reply) {
     reply.view('index.html', {});
-}
+};
+
+function go(request, reply) {
+  wallet.checkout.create({ 
+    "amount":0.001,
+    "currency": "EUR",
+    "items":[{
+      "ref":123,
+      "name":"Gato",
+      "descr":"Um gato",
+    "qt":1
+    }]
+  }, function(error, checkout) {
+    if(error) {
+      console.log(error);
+    }
+    console.log(checkout);
+    reply().redirect(checkout.url_redirect);
+  });
+};
 
 
 server.start(function () {
