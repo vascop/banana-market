@@ -10,6 +10,10 @@
 
         <h3>{{ price }} €</h3>
 
+        {{#if photo_url}}
+          <img src="{{photo_url}}" />
+        {{/if}}
+
         <p>{{ description }}</p>
 
         <p><a href="/go/{{id}}" class="ink-button blue">SHUT UP AND TAKE MY MONEY!!</a>
