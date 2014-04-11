@@ -29,6 +29,7 @@ var new_product_submit_config = {
         payload: {
             title: Joi.string().required(),
             description: Joi.string().required(),
+            after_description: Joi.string().optional(),
             price: Joi.number().required().min(1).max(999),
             email: Joi.string().email().required(),
             photo_url: Joi.string().optional()
@@ -53,6 +54,7 @@ function new_product_submit(request, reply) {
             id: id,
             title: request.payload.title,
             description: request.payload.description,
+            after_description: request.payload.after_description,
             photo_url: request.payload.photo_url,
             price: request.payload.price,
             email: request.payload.email
@@ -98,6 +100,7 @@ function product_detail(request, reply) {
             id: item._id,
             title: item.title,
             description: item.description,
+            after_description: request.payload.after_description,
             price: item.price,
             photo_url: item.photo_url
         });
