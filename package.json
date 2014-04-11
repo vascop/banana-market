@@ -12,7 +12,8 @@
     "hapi": "^4.0.0",
     "handlebars": "^2.0.0-alpha.2",
     "meo-wallet": "0.0.x",
-    "joi": "^3.1.0"
+    "joi": "^3.1.0",
+    "mongodb": "^1.4.0"
   },
   "devDependencies": {
     "nodemon": "~0.7.10"
