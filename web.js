@@ -47,7 +47,7 @@ function new_product_submit(request, reply) {
     product_table.insert(new_product, function (err, item) {
         var id = item[0]._id;
 
-        reply.view('product_detail.html', {
+        reply({
             id: id,
             title: request.payload.title,
             description: request.payload.description,

@@ -2,6 +2,7 @@
 {{> header}}
 
 <form class="ink-form" action="/new_product" method="post">
+    <p id="formerrors" class="tip"></p>
     <div class="control-group required">
         <label for="title">Product Name</label>
         <div class="control">
@@ -26,7 +27,25 @@
             <input id="email" name="email" type="text" placeholder="wallet@mail.com">
         </div>
     </div>
-    <button class="ink-button">Submit</button>
+    <button class="ink-button" onclick="return sendFormFromHTML(this.form);">Submit</button>
 </form>
 
+<script type="text/javascript">
+    function sendFormFromHTML(form) {
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function(e) {
+            var resp = JSON.parse(this.responseText);
+            if (resp.error) {
+                document.getElementById("formerrors").innerHTML = resp.message;
+            }
+            else {
+                window.location = "/products/" + resp.id;
+            }
+        };
+        xhr.send(formData);
+        return false;
+    }
+</script>
 {{> footer}}
