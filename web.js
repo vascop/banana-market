@@ -30,9 +30,9 @@ var new_product_submit_config = {
             title: Joi.string().required(),
             description: Joi.string().required(),
             after_description: Joi.string().required(),
+            photo_url: Joi.string().required(),
             price: Joi.number().required().min(1).max(999),
-            email: Joi.string().email().required(),
-            photo_url: Joi.string().optional()
+            email: Joi.string().email().required()
     } }
 };
 
@@ -148,7 +148,7 @@ function go(request, reply) {
 };
 
 
-var server = new Hapi.Server('localhost', 8000, options);
+var server = new Hapi.Server('0.0.0.0', 80, options);
 
 server.route([
     { method: 'GET', path: '/', handler: index },
