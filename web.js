@@ -37,8 +37,6 @@ var new_product_submit_config = {
 };
 
 function new_product_submit(request, reply) {
-    console.log(request.payload);
-
     var new_product = {
         'title': request.payload.title,
         'description': request.payload.description,
@@ -78,8 +76,6 @@ function new_product(request, reply) {
 };
 
 function confirm(request, reply) {
-    console.log(request.query.checkoutid);
-
     wallet.checkout.get(request.query.checkoutid, function(error, checkout) {
       if(error) {
         console.log(error);
@@ -98,6 +94,12 @@ function confirm(request, reply) {
 
 function cancel(request, reply) {
     reply.view('cancel.html', {});
+};
+
+function wallet_callback(request, reply) {
+  console.log("\n\nCALLBACK \n\n", request);
+
+  reply();
 };
 
 function index(request, reply) {
@@ -161,7 +163,6 @@ function go(request, reply) {
           if(error) {
             console.log(error);
           }
-          console.log(checkout);
           reply().redirect(checkout.url_redirect);
         });
     });
@@ -175,6 +176,7 @@ server.route([
     { method: 'GET', path: '/go/{id}', handler: go },
     { method: 'GET', path: '/confirm', handler: confirm },
     { method: 'GET', path: '/cancel', handler: cancel },
+    { method: 'GET', path: '/wallet_callback', handler: wallet_callback },
     { method: 'GET', path: '/new', handler: new_product },
     { method: 'POST', path: '/new', config: new_product_submit_config },
     { method: 'GET', path: '/products/{id}', handler: product_detail },

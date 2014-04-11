@@ -20,12 +20,13 @@
         <div class="all-25">
           <div class="column">
             <div>
+              <a href="/products/{{ _id }}">
               {{# if photo_url }}
                 <img src="{{ photo_url }}" width="260" height="200" />
               {{ else }}
                 <img src="/img/default.png" width="260" height="200" />
               {{/if}}
-
+              </a>
               <h3><a href="/products/{{ _id }}">{{ title }}</a></h3>
               <h4>{{ price }} €</h4>
             </div>
