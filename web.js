@@ -3,6 +3,14 @@ var Joi = require('joi');
 var wallet = require('meo-wallet');
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
+var Twit = require('twit')
+
+var T = new Twit({
+    consumer_key:         '44JHVRQkteAob0WD8uUmdYO8c',
+    consumer_secret:      'osPNWcddMatXMPhkkTSqiIDah567HYz5C6Vy3M6ybFwwKhvelN',
+    access_token:         '...',
+    access_token_secret:  '...'
+})
 
 // Connect to the db
 MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
