@@ -32,7 +32,8 @@ var new_product_submit_config = {
             after_description: Joi.string().required(),
             photo_url: Joi.string().required(),
             price: Joi.number().required().min(1).max(999),
-            email: Joi.string().email().required()
+            email: Joi.string().email().required(),
+            twitter: Joi.string().required()
     } }
 };
 
@@ -44,6 +45,7 @@ function new_product_submit(request, reply) {
         'photo_url': request.payload.photo_url,
         'price': request.payload.price,
         'email': request.payload.email,
+        'twitter': request.payload.twitter,
     };
 
     product_table.insert(new_product, function (err, item) {
@@ -56,7 +58,8 @@ function new_product_submit(request, reply) {
             after_description: request.payload.after_description,
             photo_url: request.payload.photo_url,
             price: request.payload.price,
-            email: request.payload.email
+            email: request.payload.email,
+            twitter: request.payload.twitter
         });
     });
 };
@@ -119,7 +122,9 @@ function product_detail(request, reply) {
             title: item.title,
             description: item.description,
             price: item.price,
-            photo_url: item.photo_url
+            price_coded: item.price*100,
+            photo_url: item.photo_url,
+            twitter: item.twitter
         });
     });
 };
@@ -163,6 +168,7 @@ function go(request, reply) {
           if(error) {
             console.log(error);
           }
+          console.log(checkout);
           reply().redirect(checkout.url_redirect);
         });
     });
