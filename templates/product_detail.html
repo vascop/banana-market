@@ -4,17 +4,26 @@
 <section class="cool">
   <div class="ink-grid">
     <div class="column-group push-middle">
-      <div class="xlarge-70 large-70 all-80 align-center push-center">
-
+      <div class="all-100">
         <h1>{{ title }}</h1>
-
-        <h3>{{ price }} €</h3>
+      </div>
+      <div class="all-60">
+        <p class="product_description">{{ description }}</p>
 
         {{#if photo_url}}
-          <img src="{{photo_url}}" />
+          <img class="product_picture" src="{{photo_url}}" />
         {{/if}}
+      </div>
+      <div class="all-40 buy_collumn">
 
-        <p>{{ description }}</p>
+        <h3>Price: {{ price }} €</h3>
+        <br><br>
+        <p>Sold by <b><a href="http://twitter.com/{{ twitter }}" target="_blank">@{{ twitter }}</a></b></p>
+
+        <div class="qrcode_container">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?data=http://wallet.codebits.eu/qr/2;cenasboas;93761319899799;Banana%20Market;{{price_coded}};EUR;0;{{title}}" id="qrcode_img" width="188" height="188" alt="" class="qrcode_image" style="top: 0px; left: 0px;">
+          <img src="https://www.wallet.codebits.eu/assets/images/icone_meowallet.png" id="qrcode_logo" width="50" height="46" alt="" class="qrcode_logo" style="top: 71px; left: 69px;">
+        </div>
 
         <p><a href="/go/{{id}}" class="ink-button blue">SHUT UP AND TAKE MY MONEY!!</a>
       </div>

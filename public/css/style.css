@@ -75,3 +75,22 @@ a:hover {
   text-decoration: none;
   color: #404040;
 }
+
+#qrcode, .payment-info{float:right; width:25%; margin:0;}
+#qrcode{width:auto; text-align:center;}
+#qrcode h3, .payment-info h3{text-align:left; font: 700 1.286em/1 OpenSansBold,Arial Black,sans-serif; padding:0 0 10px 0; margin:0 0 12px 0; border-bottom:1px solid #afafaf;}
+#qrcode a{display:block; width:100%; font-size:0.929em; line-height:1.2; margin:5px 0 0 0;}
+#qrcode .label-tooltip{top:0;}
+#qrcode .label-tooltip a{font:700 1em OpenSansBold, Arial Black, sans-serif; margin:0;}
+.qrcode_container{margin-top: 15px; margin-bottom: 40px; position:relative; width:188px; height:188px;}
+.qrcode_container .qrcode_image{left:0;}
+.qrcode_container .qrcode_logo{left:38%; top:37%;}
+.qrcode_image{position:absolute; z-index:1;}
+.qrcode_logo{position:absolute; z-index:2;}
+
+.product_picture {
+  max-width: 90%;
+}
+.product_description {
+  max-width: 90%;
+}
