@@ -38,15 +38,14 @@ var new_product_submit_config = {
             title: Joi.string().required(),
             description: Joi.string().required(),
             after_description: Joi.string().required(),
+            photo_url: Joi.string().required(),
             price: Joi.number().required().min(1).max(999),
             email: Joi.string().email().required(),
-            photo_url: Joi.string().optional()
+            twitter: Joi.string().required()
     } }
 };
 
 function new_product_submit(request, reply) {
-    console.log(request.payload);
-
     var new_product = {
         'title': request.payload.title,
         'description': request.payload.description,
@@ -54,6 +53,7 @@ function new_product_submit(request, reply) {
         'photo_url': request.payload.photo_url,
         'price': request.payload.price,
         'email': request.payload.email,
+        'twitter': request.payload.twitter,
     };
 
     product_table.insert(new_product, function (err, item) {
@@ -66,7 +66,8 @@ function new_product_submit(request, reply) {
             after_description: request.payload.after_description,
             photo_url: request.payload.photo_url,
             price: request.payload.price,
-            email: request.payload.email
+            email: request.payload.email,
+            twitter: request.payload.twitter
         });
     });
 };
@@ -86,8 +87,6 @@ function new_product(request, reply) {
 };
 
 function confirm(request, reply) {
-    console.log(request.query.checkoutid);
-
     wallet.checkout.get(request.query.checkoutid, function(error, checkout) {
       if(error) {
         console.log(error);
@@ -108,6 +107,12 @@ function cancel(request, reply) {
     reply.view('cancel.html', {});
 };
 
+function wallet_callback(request, reply) {
+  console.log("\n\nCALLBACK \n\n", request);
+
+  reply();
+};
+
 function index(request, reply) {
     product_table.find({}, function(err, items) {
         items.toArray(function(err, array) {
@@ -125,7 +130,9 @@ function product_detail(request, reply) {
             title: item.title,
             description: item.description,
             price: item.price,
-            photo_url: item.photo_url
+            price_coded: item.price*100,
+            photo_url: item.photo_url,
+            twitter: item.twitter
         });
     });
 };
@@ -176,13 +183,14 @@ function go(request, reply) {
 };
 
 
-var server = new Hapi.Server('localhost', 8000, options);
+var server = new Hapi.Server('0.0.0.0', 80, options);
 
 server.route([
     { method: 'GET', path: '/', handler: index },
     { method: 'GET', path: '/go/{id}', handler: go },
     { method: 'GET', path: '/confirm', handler: confirm },
     { method: 'GET', path: '/cancel', handler: cancel },
+    { method: 'GET', path: '/wallet_callback', handler: wallet_callback },
     { method: 'GET', path: '/new', handler: new_product },
     { method: 'POST', path: '/new', config: new_product_submit_config },
     { method: 'GET', path: '/products/{id}', handler: product_detail },
