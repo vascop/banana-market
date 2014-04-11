@@ -72,7 +72,22 @@ function new_product(request, reply) {
 };
 
 function confirm(request, reply) {
-    reply.view('confirm.html', {});
+    console.log(request.query.checkoutid);
+    
+    wallet.checkout.get(request.query.checkoutid, function(error, checkout) {
+      if(error) {
+        console.log(error);
+      }
+      product_table.findOne({_id:ObjectId(checkout.payment.items[0].ref)}, function(err, item) {
+        reply.view('confirm.html', {
+            id: item._id,
+            title: item.title,
+            description: item.description,
+            after_description: item.after_description,
+            price: item.price,
+        });
+      });
+    });
 };
 
 function cancel(request, reply) {
@@ -112,7 +127,7 @@ function go(request, reply) {
           "items":[{
             "ref":request.params.id,
             "name":item.title,
-            "descr":item.description,
+            "descr":item.title + " - " + item.description,
           "qt":1
           }]
         }, function(error, checkout) {
