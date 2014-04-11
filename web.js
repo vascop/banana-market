@@ -57,6 +57,16 @@ function new_product_submit(request, reply) {
     });
 };
 
+function product_list(request, reply) {
+    product_table.find({}, function(err, items) {
+        items.toArray(function(err, array) {
+            reply.view('list_products.html', {
+                products: array
+            });
+        });
+    });
+};
+
 function new_product(request, reply) {
     reply.view('new_product.html', {});
 };
@@ -75,10 +85,6 @@ function index(request, reply) {
 
 function product_detail(request, reply) {
     product_table.findOne({_id:ObjectId(request.params.id)}, function(err, item) {
-        console.log("ID: " + request.params.id);
-        if (err) {
-            console.log("ERR: " + err);
-        }
         reply.view('product_detail.html', {
             id: item._id,
             title: item.title,
@@ -124,6 +130,7 @@ server.route([
     { method: 'GET', path: '/new_product', handler: new_product },
     { method: 'POST', path: '/new_product', config: new_product_submit_config },
     { method: 'GET', path: '/products/{id}', handler: product_detail },
+    { method: 'GET', path: '/products', handler: product_list },
     { method: 'GET', path: '/{path*}', handler: {
         directory: { path: './public', listing: true, index: true }
     } }
