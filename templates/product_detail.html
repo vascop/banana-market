@@ -7,14 +7,14 @@
       <div class="all-100">
         <h1>{{ title }}</h1>
       </div>
-      <div class="all-60">
+      <div class="all-60 small-100 tiny-100">
         <p class="product_description">{{ description }}</p>
 
         {{#if photo_url}}
           <img class="product_picture" src="{{photo_url}}" />
         {{/if}}
       </div>
-      <div class="all-40 buy_collumn">
+      <div class="all-40 small-100 tiny-100 buy_collumn">
 
         <h3>Price: {{ price }} €</h3>
         <br><br>
@@ -25,7 +25,7 @@
           <img src="https://www.wallet.codebits.eu/assets/images/icone_meowallet.png" id="qrcode_logo" width="50" height="46" alt="" class="qrcode_logo" style="top: 71px; left: 69px;">
         </div>
 
-        <p><a href="/go/{{id}}" class="ink-button blue">SHUT UP AND TAKE MY MONEY!!</a>
+        <p><a href="/go/{{id}}" class="ink-button blue">SHUT UP AND TAKE <br>MY MONEY!!</a>
       </div>
     </div>
   </div>
