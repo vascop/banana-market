@@ -89,22 +89,28 @@ function product_detail(request, reply) {
 };
 
 function go(request, reply) {
-  wallet.checkout.create({ 
-    "amount":0.01,
-    "currency": "EUR",
-    "items":[{
-      "ref":123,
-      "name":"Gato",
-      "descr":"Um gato",
-    "qt":1
-    }]
-  }, function(error, checkout) {
-    if(error) {
-      console.log(error);
-    }
-    console.log(checkout);
-    reply().redirect(checkout.url_redirect);
-  });
+    console.log("ID: " + request.params.id);
+    product_table.findOne({_id:ObjectId(request.params.id)}, function(err, item) {
+        if (err) {
+            console.log("ERR: " + err);
+        }
+        wallet.checkout.create({ 
+          "amount":item.price,
+          "currency": "EUR",
+          "items":[{
+            "ref":request.params.id,
+            "name":item.title,
+            "descr":item.description,
+          "qt":1
+          }]
+        }, function(error, checkout) {
+          if(error) {
+            console.log(error);
+          }
+          console.log(checkout);
+          reply().redirect(checkout.url_redirect);
+        });
+    });
 };
 
 
@@ -112,7 +118,7 @@ var server = new Hapi.Server('localhost', 8000, options);
 
 server.route([
     { method: 'GET', path: '/', handler: index },
-    { method: 'GET', path: '/go', handler: go },
+    { method: 'GET', path: '/go/{id}', handler: go },
     { method: 'GET', path: '/confirm', handler: confirm },
     { method: 'GET', path: '/cancel', handler: cancel },
     { method: 'GET', path: '/new_product', handler: new_product },

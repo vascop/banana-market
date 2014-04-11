@@ -1,9 +1,22 @@
 {{> head}}
 {{> header}}
 
-<h1>{{ title }}</h1>
+<section class="cool">
+  <div class="ink-grid">
+    <div class="column-group push-middle">
+      <div class="xlarge-70 large-70 all-80 align-center push-center">
 
-<p><a href="/products/{{ id }}">Link to your product</a>
-<p>{{ description }}</p>
+        <h1>{{ title }}</h1>
+
+        <h3>{{ price }} €</h3>
+
+        <p><a href="/products/{{ id }}">Link to your product</a>
+        <p>{{ description }}</p>
+
+        <p><a href="/go/{{id}}" class="ink-button blue">SHUT UP AND TAKE MY MONEY!!</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 {{> footer}}
