@@ -120,7 +120,7 @@ function index(request, reply) {
     product_table.find({}, function(err, items) {
         items.toArray(function(err, array) {
             reply.view('index.html', {
-                products: array
+                products: toGrid(array)
             });
         });
     });
@@ -184,6 +184,19 @@ function go(request, reply) {
         });
     });
 };
+
+function toGrid(data){
+    var rows=[],
+        step=4,
+        i=0,
+        L=data.length;
+    
+    for(; i<L ; i+=step){
+        rows.push({cells:data.slice(i,i+step)});
+    };
+
+    return rows;
+}
 
 
 var server = new Hapi.Server('0.0.0.0', 80, options);
