@@ -92,9 +92,12 @@ function confirm(request, reply) {
             console.log(error);
         }
         product_table.findOne({_id:ObjectId(checkout.payment.items[0].ref)}, function(err, item) {
-            T.post('statuses/update', { status: 'You just sold "' + item.title + '" in bananamarket.eu from @' + item.twitter + ' at #codebits!' }, function(err, reply) {
+            var name = checkout.payment.client.name.split(" ");
+            var first = name[0];
+            var last = name[name.length-1];
+            T.post('statuses/update', { status: 'You just sold "' + item.title + '" to ' + first + ' ' + last + ' in bananamarket.eu from @' + item.twitter + ' at #codebits!' }, function(err, reply) {
                 if (err) console.log(err);
-            })
+            });
             reply.view('confirm.html', {
                 id: item._id,
                 title: item.title,
