@@ -32,11 +32,37 @@
                     <input id="email" name="email" type="text" placeholder="wallet@mail.com">
                 </div>
             </div>
-            <button class="ink-button blue">Submit</button>
+
+            <div id="alertbox" class="ink-alert basic error" style="display:none;">
+                <button class="ink-dismiss">&times;</button>
+                <p id="formerrors"> There's a warning for you</p>
+            </div>
+
+            <button class="ink-button blue" onclick="return sendFormFromHTML(this.form);">Submit</button>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+    function sendFormFromHTML(form) {
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function(e) {
+            var resp = JSON.parse(this.responseText);
+            if (resp.error) {
+                document.getElementById("alertbox").style.display = "block";
+                document.getElementById("formerrors").innerHTML = "<b>Error:</b> "+resp.message;
+            }
+            else {
+                window.location = "/products/" + resp.id;
+            }
+        };
+        xhr.send(formData);
+        return false;
+    }
+</script>
 
 {{> footer}}
