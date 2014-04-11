@@ -5,7 +5,7 @@
   <div class="ink-grid">
     <div class="column-group push-middle">
       <div class="xlarge-70 large-70 all-80 align-center push-center">
-        <a href="/new" class="ink-button green">SELL YOUR PRODUCT!!</a> 
+        <a href="/new" class="ink-button green">SELL YOUR PRODUCT!!</a>
       </div>
     </div>
   </div>
@@ -13,16 +13,26 @@
 
 <section class="cool">
   <div class="ink-grid">
-    <div class="column-group push-middle">
-      <div class="xlarge-70 large-70 all-80 align-center push-center">
-        <h1>Available Products</h1>
+    <h1>Available Products</h1>
+    <div class="column-group horizontal-gutters">
+
         {{#each products}}
-          <div>
-            <h3><a href="/products/{{ _id }}">{{ title }}</a><h6>{{ price }} €</h6></h3>
-            <p>{{ description }}</p>
+        <div class="all-25">
+          <div class="column">
+            <div>
+              {{# if photo_url }}
+                <img src="{{ photo_url }}" width="260" height="200" />
+              {{ else }}
+                <img src="/img/default.png" width="260" height="200" />
+              {{/if}}
+
+              <h3><a href="/products/{{ _id }}">{{ title }}</a></h3>
+              <h4>{{ price }} €</h4>
+            </div>
           </div>
+        </div>
         {{/each}}
-      </div>
+
     </div>
   </div>
 </section>
