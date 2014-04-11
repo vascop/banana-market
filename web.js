@@ -30,7 +30,8 @@ var new_product_submit_config = {
             title: Joi.string().required(),
             description: Joi.string().required(),
             price: Joi.number().required().min(1).max(999),
-            email: Joi.string().email().required()
+            email: Joi.string().email().required(),
+            photo_url: Joi.string().optional()
     } }
 };
 
@@ -40,6 +41,7 @@ function new_product_submit(request, reply) {
     var new_product = {
         'title': request.payload.title,
         'description': request.payload.description,
+        'photo_url': request.payload.photo_url,
         'price': request.payload.price,
         'email': request.payload.email,
     };
@@ -51,6 +53,7 @@ function new_product_submit(request, reply) {
             id: id,
             title: request.payload.title,
             description: request.payload.description,
+            photo_url: request.payload.photo_url,
             price: request.payload.price,
             email: request.payload.email
         });
@@ -96,6 +99,7 @@ function product_detail(request, reply) {
             title: item.title,
             description: item.description,
             price: item.price,
+            photo_url: item.photo_url
         });
     });
 };
@@ -106,7 +110,7 @@ function go(request, reply) {
         if (err) {
             console.log("ERR: " + err);
         }
-        wallet.checkout.create({ 
+        wallet.checkout.create({
           "amount":item.price,
           "currency": "EUR",
           "items":[{
@@ -145,7 +149,3 @@ server.route([
 server.start(function () {
     console.log('Server started at: ' + server.info.uri);
 });
-
-
-
-
