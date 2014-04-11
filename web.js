@@ -17,7 +17,10 @@ server.route([
     { method: 'GET', path: '/', handler: index },
     { method: 'GET', path: '/go', handler: go },
     { method: 'GET', path: '/confirm', handler: confirm },
-    { method: 'GET', path: '/cancel', handler: cancel }
+    { method: 'GET', path: '/cancel', handler: cancel },
+    { method: 'GET', path: '/{path*}', handler: {
+        directory: { path: './public', listing: true, index: true }
+    } }
 ]);
 
 
@@ -35,7 +38,7 @@ function index(request, reply) {
 
 function go(request, reply) {
   wallet.checkout.create({ 
-    "amount":0.001,
+    "amount":0.01,
     "currency": "EUR",
     "items":[{
       "ref":123,

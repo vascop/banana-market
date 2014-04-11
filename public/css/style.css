@@ -1,0 +1,50 @@
+.header {
+  background: #ffcc00;
+  background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(0%,#ffcc00),color-stop(100%,#cc9900));
+  background-image: -webkit-radial-gradient(#ffcc00,#cc9900);
+  background-image: -moz-radial-gradient(#ffcc00,#cc9900);
+  background-image: -o-radial-gradient(#ffcc00,#cc9900);
+  background-image: radial-gradient(#ffcc00,#cc9900);
+}
+
+.header img {
+  max-width: 200px;
+}
+
+.cool {
+  background: #709dc7;
+  background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(0%,#709dc7),color-stop(100%,#4b84b9));
+  background-image: -webkit-radial-gradient(#709dc7,#4b84b9);
+  background-image: -moz-radial-gradient(#709dc7,#4b84b9);
+  background-image: -o-radial-gradient(#709dc7,#4b84b9);
+  background-image: radial-gradient(#709dc7,#4b84b9);
+  padding: 50px;
+}
+
+.cancel {
+  background: #cd6969;
+  background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(0%,#cd6969),color-stop(100%,#9c3434));
+  background-image: -webkit-radial-gradient(#cd6969,#9c3434);
+  background-image: -moz-radial-gradient(#cd6969,#9c3434);
+  background-image: -o-radial-gradient(#cd6969,#9c3434);
+  background-image: radial-gradient(#cd6969,#9c3434);
+  padding: 50px;
+}
+
+.cancel img {
+  width: 500px;
+}
+
+.confirm {
+  background: #55b950;
+  background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(0%,#55b950),color-stop(100%,#3b7f3c));
+  background-image: -webkit-radial-gradient(#55b950,#3b7f3c);
+  background-image: -moz-radial-gradient(#55b950,#3b7f3c);
+  background-image: -o-radial-gradient(#55b950,#3b7f3c);
+  background-image: radial-gradient(#55b950,#3b7f3c);
+  padding: 50px;
+}
+
+.confirm img {
+  width: 500px;
+}
