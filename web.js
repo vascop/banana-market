@@ -76,7 +76,7 @@ function new_product(request, reply) {
 
 function confirm(request, reply) {
     console.log(request.query.checkoutid);
-    
+
     wallet.checkout.get(request.query.checkoutid, function(error, checkout) {
       if(error) {
         console.log(error);
@@ -119,6 +119,26 @@ function product_detail(request, reply) {
     });
 };
 
+function delete_product(request, reply) {
+    var id = ObjectId(request.params.id);
+    product_table.findOne({_id:id}, function(err, item) {
+        product_table.remove({_id:id}, function(err, item) {
+            reply().redirect('/superpainelsecreto');
+        });
+    });
+};
+
+function painel_secreto(request, reply) {
+    product_table.find({}, function(err, items) {
+        items.toArray(function(err, array) {
+            reply.view('admin_products.html', {
+                products: array
+            });
+        });
+    });
+};
+
+
 function go(request, reply) {
     console.log("ID: " + request.params.id);
     product_table.findOne({_id:ObjectId(request.params.id)}, function(err, item) {
@@ -156,6 +176,8 @@ server.route([
     { method: 'POST', path: '/new', config: new_product_submit_config },
     { method: 'GET', path: '/products/{id}', handler: product_detail },
     { method: 'GET', path: '/products', handler: product_list },
+    { method: 'GET', path: '/superpainelsecreto', handler: painel_secreto },
+    { method: 'POST', path: '/delete_product/{id}', handler: delete_product },
     { method: 'GET', path: '/{path*}', handler: {
         directory: { path: './public', listing: true, index: true }
     } }
