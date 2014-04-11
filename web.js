@@ -80,7 +80,13 @@ function cancel(request, reply) {
 };
 
 function index(request, reply) {
-    reply.view('index.html', {});
+    product_table.find({}, function(err, items) {
+        items.toArray(function(err, array) {
+            reply.view('index.html', {
+                products: array
+            });
+        });
+    });
 };
 
 function product_detail(request, reply) {
@@ -127,8 +133,8 @@ server.route([
     { method: 'GET', path: '/go/{id}', handler: go },
     { method: 'GET', path: '/confirm', handler: confirm },
     { method: 'GET', path: '/cancel', handler: cancel },
-    { method: 'GET', path: '/new_product', handler: new_product },
-    { method: 'POST', path: '/new_product', config: new_product_submit_config },
+    { method: 'GET', path: '/new', handler: new_product },
+    { method: 'POST', path: '/new', config: new_product_submit_config },
     { method: 'GET', path: '/products/{id}', handler: product_detail },
     { method: 'GET', path: '/products', handler: product_list },
     { method: 'GET', path: '/{path*}', handler: {

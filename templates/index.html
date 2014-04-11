@@ -1,15 +1,31 @@
 {{> head}}
-
 {{> header}}
+
+<section class="confirm">
+  <div class="ink-grid">
+    <div class="column-group push-middle">
+      <div class="xlarge-70 large-70 all-80 align-center push-center">
+        <a href="/new" class="ink-button green">ADD NEW PRODUCT!!</a> 
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="cool">
   <div class="ink-grid">
     <div class="column-group push-middle">
       <div class="xlarge-70 large-70 all-80 align-center push-center">
-        <a href="/go" class="ink-button blue">I'm cool!</a> 
+        <h1>Available Products</h1>
+        {{#each products}}
+          <div>
+            <h3><a href="/products/{{ _id }}">{{ title }}</a><h6>{{ price }} €</h6></h3>
+            <p>{{ description }}</p>
+          </div>
+        {{/each}}
       </div>
     </div>
   </div>
 </section>
+
 
 {{> footer}}

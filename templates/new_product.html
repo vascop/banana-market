@@ -1,32 +1,42 @@
 {{> head}}
 {{> header}}
 
-<form class="ink-form" action="/new_product" method="post">
-    <div class="control-group required">
-        <label for="title">Product Name</label>
-        <div class="control">
-            <input id="title" name="title" type="text" placeholder="Banana Bag">
-        </div>
+<section class="cool">
+  <div class="ink-grid">
+    <div class="column-group push-middle">
+      <div class="xlarge-80 large-80 all-100 align-center push-center">
+        <h1>Add new product</h1>
+
+        <form class="ink-form" action="/new" method="post">
+            <div class="control-group required">
+                <label for="title">Product Name</label>
+                <div class="control">
+                    <input id="title" name="title" type="text" placeholder="Banana Bag">
+                </div>
+            </div>
+            <div class="control-group required">
+                <label for="description">Product Description</label>
+                <div class="control">
+                    <textarea id="description" name="description" rows="5" cols="35" placeholder="This description tells the buyer how bananalicious your product is"></textarea>
+                </div>
+            </div>
+            <div class="control-group required">
+                <label for="price">Price in EUR</label>
+                <div class="control">
+                    <input id="price" name="price" type="text" placeholder="El diñero">
+                </div>
+            </div>
+            <div class="control-group required">
+                <label for="email">Your Wallet Email</label>
+                <div class="control">
+                    <input id="email" name="email" type="text" placeholder="wallet@mail.com">
+                </div>
+            </div>
+            <button class="ink-button blue">Submit</button>
+        </form>
+      </div>
     </div>
-    <div class="control-group required">
-        <label for="description">Product Description</label>
-        <div class="control">
-            <textarea id="description" name="description" rows="5" cols="35">This description tells the buyer how bananalicious your product is</textarea>
-        </div>
-    </div>
-    <div class="control-group required">
-        <label for="price">Price</label>
-        <div class="control">
-            <input id="price" name="price" type="text" placeholder="El diñero">
-        </div>
-    </div>
-    <div class="control-group required">
-        <label for="email">Email</label>
-        <div class="control">
-            <input id="email" name="email" type="text" placeholder="wallet@mail.com">
-        </div>
-    </div>
-    <button class="ink-button">Submit</button>
-</form>
+  </div>
+</section>
 
 {{> footer}}

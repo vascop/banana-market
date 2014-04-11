@@ -37,11 +37,11 @@
 
 .confirm {
   background: #55b950;
-  background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(0%,#55b950),color-stop(100%,#3b7f3c));
-  background-image: -webkit-radial-gradient(#55b950,#3b7f3c);
-  background-image: -moz-radial-gradient(#55b950,#3b7f3c);
-  background-image: -o-radial-gradient(#55b950,#3b7f3c);
-  background-image: radial-gradient(#55b950,#3b7f3c);
+  background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(0%,#55b950),color-stop(100%,#489C46));
+  background-image: -webkit-radial-gradient(#55b950,#489C46);
+  background-image: -moz-radial-gradient(#55b950,#489C46);
+  background-image: -o-radial-gradient(#55b950,#489C46);
+  background-image: radial-gradient(#55b950,#489C46);
   padding: 50px;
 }
 
@@ -49,14 +49,25 @@
   width: 500px;
 }
 
+.footer {
+  background: #ddd;
+  background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(0%,#ddd),color-stop(100%,#aaa));
+  background-image: -webkit-radial-gradient(#ddd,#aaa);
+  background-image: -moz-radial-gradient(#ddd,#aaa);
+  background-image: -o-radial-gradient(#ddd,#aaa);
+  background-image: radial-gradient(#ddd,#aaa);
+  padding: 50px;
+}
+
+
 a {
   opacity: 0.7;
   text-decoration: none;
-  color: #fff;
+  color: #404040;
 }
 
 a:hover {
   opacity: 1;
   text-decoration: none;
-  color: #fff;
+  color: #404040;
 }
