@@ -3,6 +3,14 @@ var Joi = require('joi');
 var wallet = require('meo-wallet');
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
+var Twit = require('twit');
+
+var T = new Twit({
+    consumer_key:         '44JHVRQkteAob0WD8uUmdYO8c',
+    consumer_secret:      'osPNWcddMatXMPhkkTSqiIDah567HYz5C6Vy3M6ybFwwKhvelN',
+    access_token:         '2437968967-O4Ag3n9mBrV22EWHLzHo0SxNssgQ8B4F6E6WlMf',
+    access_token_secret:  '0ZZFc443YfXEuanaRmQBJ9zSlgbglrImbfCQPpXdAPU1c'
+});
 
 // Connect to the db
 MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
@@ -80,18 +88,21 @@ function new_product(request, reply) {
 
 function confirm(request, reply) {
     wallet.checkout.get(request.query.checkoutid, function(error, checkout) {
-      if(error) {
-        console.log(error);
-      }
-      product_table.findOne({_id:ObjectId(checkout.payment.items[0].ref)}, function(err, item) {
-        reply.view('confirm.html', {
-            id: item._id,
-            title: item.title,
-            description: item.description,
-            after_description: item.after_description,
-            price: item.price,
+        if(error) {
+            console.log(error);
+        }
+        product_table.findOne({_id:ObjectId(checkout.payment.items[0].ref)}, function(err, item) {
+            T.post('statuses/update', { status: 'You just sold "' + item.title + '" in bananamarket.eu from @' + item.twitter + ' at #codebits!' }, function(err, reply) {
+                if (err) console.log(err);
+            })
+            reply.view('confirm.html', {
+                id: item._id,
+                title: item.title,
+                description: item.description,
+                after_description: item.after_description,
+                price: item.price,
+            });
         });
-      });
     });
 };
 
