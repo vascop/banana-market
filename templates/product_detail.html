@@ -18,7 +18,7 @@
 
         <h3>Price: {{ price }} €</h3>
         <br><br>
-        <p>Sold by <b><a href="http://twitter.com/{{ twitter }}" target="_blank">@{{ twitter }}</a></b></p>
+        <p>Sold by <b><a href="http://twitter.com/{{ twitter }}" target="_blank">{{ twitter }}</a></b></p>
 
         <div class="qrcode_container">
           <img src="https://api.qrserver.com/v1/create-qr-code/?data=http://wallet.codebits.eu/qr/2;cenasboas;93761319899799;Banana%20Market;{{price_coded}};EUR;0;{{title}}" id="qrcode_img" width="188" height="188" alt="" class="qrcode_image" style="top: 0px; left: 0px;">

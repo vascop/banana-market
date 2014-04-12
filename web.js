@@ -49,7 +49,7 @@ function new_product_submit(request, reply) {
     var twitter = request.payload.twitter;
 
     if (twitter[0] == '@') {
-        twitter.shift();
+        twitter = twitter.substr(1);
     }
 
     var new_product = {
@@ -107,7 +107,7 @@ function confirm(request, reply) {
             var last = name[name.length-1];
             var twitter = item.twitter;
             if (twitter[0] == '@') {
-                twitter.shift();
+              twitter = twitter.substr(1);
             }
             T.post('statuses/update', { status: '.' + twitter + ', you just sold "' + item.title + '" to ' + first + ' ' + last + ' in http://bananamarket.eu at #codebits!' }, function(err, reply) {
                 if (err) console.log(err);
