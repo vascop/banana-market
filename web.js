@@ -59,6 +59,10 @@ function new_product_submit(request, reply) {
     product_table.insert(new_product, function (err, item) {
         var id = item[0]._id;
 
+        T.post('statuses/update', { status: '.' + twitter + ', has just listed "' + request.payload.title + '" for sale in http://bananamarket.eu at #codebits!' }, function(err, reply) {
+            if (err) console.log(err);
+        });
+
         reply({
             id: id,
             title: request.payload.title,
@@ -95,7 +99,11 @@ function confirm(request, reply) {
             var name = checkout.payment.client.name.split(" ");
             var first = name[0];
             var last = name[name.length-1];
-            T.post('statuses/update', { status: 'You just sold "' + item.title + '" to ' + first + ' ' + last + ' in bananamarket.eu from @' + item.twitter + ' at #codebits!' }, function(err, reply) {
+            var twitter = item.twitter;
+            if (twitter[0] == '@') {
+                twitter.shift();
+            }
+            T.post('statuses/update', { status: '.' + twitter + ', you just sold "' + item.title + '" to ' + first + ' ' + last + ' in http://bananamarket.eu at #codebits!' }, function(err, reply) {
                 if (err) console.log(err);
             });
             reply.view('confirm.html', {
