@@ -4,15 +4,15 @@
 <section class="confirm">
   <div class="ink-grid">
   <div class="column-group horizontal-gutters">
-    <div class="all-33 order-1">
+    <div class="all-33 small-100 tiny-100 order-1">
       <h2>Make</h2>
       <p>Creating products is hard, selling them shouldn't be. We let you start selling your products in seconds.</p>
     </div>
-    <div class="all-33 order-2">
+    <div class="all-33 small-100 tiny-100 order-2">
       <h2>Share</h2>
       <p>We share your work among thousand of people in our platform.</p>
     </div>
-    <div class="all-33 order-3">
+    <div class="all-33 small-100 tiny-100 order-3">
       <h2>Profit</h2>
       <p>Just sit back and relax while we take care of everything.</p>
     </div>
@@ -28,10 +28,11 @@
 <section class="cool">
   <div class="ink-grid">
     <h1>Available Products</h1>
-    <div class="column-group horizontal-gutters">
 
-        {{#each products}}
-        <div class="all-25">
+    {{#each products}}
+      <div class="column-group horizontal-gutters">
+        {{#each cells}}
+        <div class="all-25 medium-50 small-100 tiny-100">
           <div class="column">
             <div>
               <a href="/products/{{ _id }}">
@@ -47,6 +48,8 @@
           </div>
         </div>
         {{/each}}
+        </div>
+      {{/each}}
 
     </div>
   </div>
