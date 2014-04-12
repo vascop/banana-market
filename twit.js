@@ -7,6 +7,6 @@ var T = new Twit({
     access_token_secret:  '0ZZFc443YfXEuanaRmQBJ9zSlgbglrImbfCQPpXdAPU1c'
 });
 
-T.post('statuses/update', { status: 'You just sold in bananamarket.eu from @ at #codebits!' }, function(err, reply) {
+T.post('statuses/update', { status: 'ou just sold in bananamarket.eu from @ at #codebits!' }, function(err, reply) {
     if (err) console.log(err);
 });
