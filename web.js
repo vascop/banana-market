@@ -170,7 +170,7 @@ function painel_secreto(request, reply) {
     product_table.find({}, function(err, items) {
         items.toArray(function(err, array) {
             reply.view('admin_products.html', {
-                products: array
+                products: toGrid(array)
             });
         });
     });
@@ -207,7 +207,7 @@ function toGrid(data){
         step=4,
         i=0,
         L=data.length;
-    
+
     for(; i<L ; i+=step){
         rows.push({cells:data.slice(i,i+step)});
     };
