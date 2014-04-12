@@ -46,6 +46,12 @@ var new_product_submit_config = {
 };
 
 function new_product_submit(request, reply) {
+    var twitter = request.payload.twitter;
+
+    if (twitter[0] == '@') {
+        twitter.shift();
+    }
+
     var new_product = {
         'title': request.payload.title,
         'description': request.payload.description,
@@ -53,7 +59,7 @@ function new_product_submit(request, reply) {
         'photo_url': request.payload.photo_url,
         'price': request.payload.price,
         'email': request.payload.email,
-        'twitter': request.payload.twitter,
+        'twitter': twitter,
     };
 
     product_table.insert(new_product, function (err, item) {
@@ -71,7 +77,7 @@ function new_product_submit(request, reply) {
             photo_url: request.payload.photo_url,
             price: request.payload.price,
             email: request.payload.email,
-            twitter: request.payload.twitter
+            twitter: twitter
         });
     });
 };
